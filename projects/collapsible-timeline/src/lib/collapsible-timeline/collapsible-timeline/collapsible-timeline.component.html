@@ -1,0 +1,31 @@
+<!-- Timeline -->
+<div #timeline class="timeline">
+	<div class="line text-muted"></div>
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+		<div *ngFor="let v of _data | reverse; let i = index" class="panel panel-default">
+			<div (click)="animateMe(i, v)" class="panel-heading"
+				[ngClass]="{'collapsein': v.state, 'collapseout': !v.state}" role="tab" id="heading1">
+				<label (click)="animateMe(i, v)" class="icon"> {{ _data.length-i-1+1 }}</label>
+				<div class="row row-custom">
+					<div *ngFor="let col of columns" [ngClass]="{'col-md-1': !col.styleClass}" [class]="col.styleClass" [ngStyle]="col.style">
+						<h4 (click)="animateMe(i, v)" *ngIf="!col.col && col.field" class="panel-title">
+							{{ col.header }}
+						</h4>
+						<div class="panel-title" *ngIf="col.headerTemplate">
+							<columnHeaderCollapsibleTimelineTemplateLoader [column]="col" [rowData]="v" [rowIndex]="i">
+							</columnHeaderCollapsibleTimelineTemplateLoader>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="panel-heading-body" [@myfirstanimation]='v.state' *ngIf="v.state" id="collapse1">
+				<div *ngFor="let body of bodies" class="panel-body">
+					<columnBodyCollapsibleTimelineTemplateLoader *ngIf="body.template" [body]="body" [rowData]="v"
+						[rowIndex]="i"></columnBodyCollapsibleTimelineTemplateLoader>
+				</div>
+			</div>
+		</div>
+		<!-- /Panel -->
+	</div>
+</div>

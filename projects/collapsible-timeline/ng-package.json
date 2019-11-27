@@ -1,0 +1,13 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/collapsible-timeline",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "whitelistedNonPeerDependencies": [
+    "tslib",
+    "bootstrap@4.4.0",
+    "@angular/animations@8.2.14",
+    "."
+  ]
+}
